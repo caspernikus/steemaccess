@@ -2,20 +2,21 @@ import * as types from '../actions/auth';
 
 export const getActiveToken = function() {
   const tokens = localStorage.getItem('tokens');
-
+  console.log(tokens);
+  console.log("tokens");
   if (!tokens) { return ''; }
 
   const usernames = Object.keys(tokens);
-  console.log(usernames);
+
   let activeToken = '';
   usernames.forEach((username) => {
     const tokenObj = tokens[username];
-    
+
     if (tokenObj.isActive) {
       activeToken = tokenObj.token;
     }
   });
-
+  console.log(activeToken);
   return activeToken;
 };
 
