@@ -10,8 +10,7 @@ export const getActiveToken = function() {
   let activeToken = '';
   usernames.forEach((username) => {
     const tokenObj = tokens[username];
-    console.log(tokenObj.token);
-    console.log(tokenObj.isActive);
+    
     if (tokenObj.isActive) {
       activeToken = tokenObj.token;
     }
