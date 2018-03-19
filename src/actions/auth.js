@@ -20,7 +20,6 @@ export const authenticate = () =>
     dispatch(authenticateRequest());
     const token = getActiveToken();
     console.log(token);
-    console.log(Object.keys(JSON.parse(localStorage.getItem('tokens'))));
     if (token) {
       fetch('/api/me', {
         method: 'POST',
