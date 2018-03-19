@@ -10,13 +10,14 @@ export const login = ({ username, wif, role = 'posting' }, cb) => {
     .then((data) => {
       const token = decode(wif, data.code).substring(1);
       const foundTokens = localStorage.getItem('tokens');
-
+      console.log(foundTokens);
       foundTokens[username] = {
         token,
         isActive: true,
       };
 
       localStorage.setItem('tokens', foundTokens);
+      console.log(localStorage.getItem('tokens'));
       cb(null, data);
     })
     .catch(err => cb(err, null));

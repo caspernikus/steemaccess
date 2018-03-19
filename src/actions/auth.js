@@ -19,6 +19,8 @@ export const authenticate = () =>
   (dispatch) => {
     dispatch(authenticateRequest());
     const token = getActiveToken();
+    console.log(token);
+    console.log(localStorage.getItem('tokens'));
     if (token) {
       fetch('/api/me', {
         method: 'POST',
