@@ -12,8 +12,8 @@ export const login = ({ username, wif, role = 'posting' }, cb) => {
       const foundTokens = localStorage.getItem('tokens');
 
       foundTokens[username] = {
-        token: token,
-        isActive: true
+        token,
+        isActive: true,
       };
 
       localStorage.setItem('tokens', foundTokens);

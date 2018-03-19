@@ -1,19 +1,10 @@
 import * as types from '../actions/auth';
 
-const initialState = {
-  user: {},
-  token: getActiveToken(),
-  tokens: localStorage.getItem('tokens'),
-  isLoaded: false,
-  isLoading: false,
-  isAuthenticated: false,
-};
-
 const getActiveToken = function () {
   const tokens = localStorage.getItem('tokens');
   const usernames = Object.keys(tokens);
 
-  var activeToken = '';
+  let activeToken = '';
   usernames.forEach((username) => {
     const tokenObj = tokens[username];
 
@@ -23,7 +14,16 @@ const getActiveToken = function () {
   });
 
   return activeToken;
-}
+};
+
+const initialState = {
+  user: {},
+  token: getActiveToken(),
+  tokens: localStorage.getItem('tokens'),
+  isLoaded: false,
+  isLoading: false,
+  isAuthenticated: false,
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
