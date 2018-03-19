@@ -24,7 +24,7 @@ export const login = ({ username, wif, role = 'posting' }, cb) => {
       console.log(token);
       console.log(foundTokens);
       localStorage.setItem('tokens', foundTokens);
-      cb(null, data);
+      // cb(null, data);
     })
     .catch(err => cb(err, null));
 };
