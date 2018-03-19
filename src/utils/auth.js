@@ -25,8 +25,7 @@ export const login = ({ username, wif, role = 'posting' }, cb) => {
       console.log(foundTokens);
       localStorage.setItem('tokens', foundTokens);
       // cb(null, data);
-    })
-    .catch(err => cb(err, null));
+    });
 };
 
 export const hasAuthority = (user, clientId, role = 'posting') => {
