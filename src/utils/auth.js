@@ -9,7 +9,7 @@ export const login = ({ username, wif, role = 'posting' }, cb) => {
     .then(res => res.json())
     .then((data) => {
       const token = decode(wif, data.code).substring(1);
-      let foundTokens = localStorage.getItem('tokens');
+      let foundTokens = JSON.parse(localStorage.getItem('tokens'));
 
       if (!foundTokens || foundTokens === null || foundTokens.length === 0) {
         foundTokens = {};
@@ -23,7 +23,7 @@ export const login = ({ username, wif, role = 'posting' }, cb) => {
       console.log(token);
       console.log(username);
       console.log(foundTokens);
-      localStorage.setItem('tokens', foundTokens);
+      localStorage.setItem('tokens', JSON.stringify(foundTokens));
       // cb(null, data);
     });
 };

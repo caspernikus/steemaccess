@@ -1,7 +1,7 @@
 import * as types from '../actions/auth';
 
 export const getActiveToken = function() {
-  const tokens = localStorage.getItem('tokens');
+  const tokens = JSON.parse(localStorage.getItem('tokens'));
   console.log(tokens);
   console.log("tokens");
   if (!tokens) { return ''; }
