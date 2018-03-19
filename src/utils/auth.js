@@ -9,8 +9,12 @@ export const login = ({ username, wif, role = 'posting' }, cb) => {
     .then(res => res.json())
     .then((data) => {
       const token = decode(wif, data.code).substring(1);
-      const foundTokens = localStorage.getItem('tokens');
-      console.log(foundTokens);
+      let foundTokens = localStorage.getItem('tokens');
+
+      if (foundTokens === null) {
+        foundTokens = {};
+      }
+
       foundTokens[username] = {
         token,
         isActive: true,
