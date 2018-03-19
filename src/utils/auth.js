@@ -9,7 +9,6 @@ export const login = ({ username, wif, role = 'posting' }, cb) => {
     .then(res => res.json())
     .then((data) => {
       const token = decode(wif, data.code).substring(1);
-      localStorage.setItem('tokens', '');
       let foundTokens = localStorage.getItem('tokens');
 
       if (!foundTokens || foundTokens === null || foundTokens.length === 0) {
@@ -21,8 +20,11 @@ export const login = ({ username, wif, role = 'posting' }, cb) => {
         isActive: true,
       };
 
+      console.log(token);
+      console.log(username);
+      console.log(foundTokens);
       localStorage.setItem('tokens', foundTokens);
-      cb(null, data);
+      // cb(null, data);
     });
 };
 
