@@ -1,7 +1,10 @@
 import * as types from '../actions/auth';
 
-const getActiveToken = function () {
+const getActiveToken = function() {
   const tokens = localStorage.getItem('tokens');
+
+  if (!tokens) { return ''; }
+
   const usernames = Object.keys(tokens);
 
   let activeToken = '';
