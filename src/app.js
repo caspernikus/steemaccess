@@ -2,6 +2,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { Layout } from 'antd';
 import Header from './widgets/Header';
+import SteemitAvatar from './widgets/SteemitAvatar';
 
 export default class App extends PureComponent {
   static propTypes = {
@@ -16,16 +17,20 @@ export default class App extends PureComponent {
   render() {
     const { children, auth } = this.props;
     return (
-      <Layout>
-        <Layout.Header style={{ borderBottom: '1px solid #E9E7E7' }}>
-          <Header username={this.props.auth.user.name} />
-        </Layout.Header>
-        <Layout.Content>
-          {React.cloneElement(
-            children,
-            { auth }
-          )}
-        </Layout.Content>
+      <Layout style={{ minHeight: '100%' }} >
+        <Layout.Sider collapsed={true} style={{ borderRight: '1px solid #E9E7E7' }}>
+        </Layout.Sider>
+        <Layout>
+          <Layout.Header>
+            <Header username={this.props.auth.user.name} />
+          </Layout.Header>
+          <Layout.Content>
+            {React.cloneElement(
+              children,
+              { auth }
+            )}
+          </Layout.Content>
+        </Layout>
       </Layout>
     );
   }
