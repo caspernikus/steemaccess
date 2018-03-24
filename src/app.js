@@ -36,9 +36,13 @@ export default class App extends PureComponent {
               <Link to="/apps/me"><Icon type="code-o" /></Link>
               <span> My Apps </span>
             </Menu.Item>
-            <Menu.Item key="5">
+            <Menu.Item key="4">
               <Link to="/docs/oauth2"><Icon type="share-alt" /></Link>
               <span> OAuth Links </span>
+            </Menu.Item>
+            <Menu.Item key="5">
+              <Link to="/friends/me"><Icon type="team" /></Link>
+              <span> My Friends </span>
             </Menu.Item>
           </Menu>
         </Layout.Sider>

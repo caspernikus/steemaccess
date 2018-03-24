@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { Icon, Col, Row } from 'antd';
 import { logout } from '../actions/auth';
 
 @connect(
@@ -24,8 +25,8 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="container my-5">
-        <h4><FormattedMessage id="account" /></h4>
+      <div className="container my-4">
+        <h4><FormattedMessage id="dashboard" /></h4>
         <p><Link onClick={this.handleLogoutClick}><FormattedMessage id="log_out" /></Link></p>
         <h4><FormattedMessage id="applications" /></h4>
         <p><Link to="/apps"><FormattedMessage id="apps" /></Link></p>
