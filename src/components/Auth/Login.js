@@ -17,6 +17,18 @@ export default class Login extends Component {
 
   constructor(props) {
     super(props);
+
+    const tokens = JSON.parse(localStorage.getItem('tokens'));
+
+    if (!tokens) { 
+      this.state = {
+        step: 2,
+        success: false,
+        username: "",
+      };
+      return; 
+    }
+
     this.state = {
       step: 1,
       success: false,

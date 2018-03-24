@@ -5,20 +5,12 @@ import SteemitAvatar from './SteemitAvatar';
 import './Header.less';
 
 const Header = ({ username }) =>
-  <div className="Header container">
-    <div className="Header__log">
-      {username &&
+  <div className="Header">
+    {username &&
         <Link to="/dashboard">
-          <span className="mr-2">{username}</span>
-          <div className="float-right"><SteemitAvatar username={username} /></div>
+          <SteemitAvatar username={username} />
         </Link>
       }
-      {!username &&
-        <div>
-          <Link to="/login"><FormattedMessage id="log_in" /></Link>
-        </div>
-      }
-    </div>
   </div>;
 
 Header.propTypes = {

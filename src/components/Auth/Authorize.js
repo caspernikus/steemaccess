@@ -169,7 +169,17 @@ export default class Authorize extends Component {
                   <Form.Item>
                     <Button
                       type="primary" htmlType="button" className="SignForm__button"
-                      onClick={() => this.setState({ step: 2 })}
+                      onClick={() => {
+                          const tokens = JSON.parse(localStorage.getItem('tokens'));
+
+                          if (!tokens) { 
+                            this.setState({ step: 3 });
+                            return; 
+                          }
+
+                          this.setState({ step: 2 });
+                        }
+                      }
                     >
                       <FormattedMessage id="continue" />
                     </Button>
