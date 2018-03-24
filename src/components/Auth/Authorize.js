@@ -11,6 +11,7 @@ import { authorize, login, hasAuthority, addPostingAuthority } from '../../utils
 import SteemitAvatar from '../../widgets/SteemitAvatar';
 import Loading from '../../widgets/Loading';
 import SignForm from '../Form/Sign';
+import SelectAccountForm from '../Form/SelectAccount';
 import config from '../../../config.json';
 import './Authorize.less';
 
@@ -82,6 +83,12 @@ export default class Authorize extends Component {
     }
   };
 
+  accountSelected(account) {
+    this.setState({ 
+      step: 3,
+      username: account,
+    });
+  };
 
   authorize = (auth) => {
     const { clientId, responseType, redirectUri, scope, state } = this.state;
@@ -169,7 +176,8 @@ export default class Authorize extends Component {
                   </Form.Item>
                 </Form>
               }
-              {step === 2 && <SignForm roles={requiredRoles} sign={this.authorize} />}
+              {step === 2 && <SelectAccountForm parentCallback={this.accountSelected.bind(this)} />}
+              {step === 3 && <SignForm roles={requiredRoles} username={this.state.username} sign={this.authorize} />}
             </div>
             <div className="Sign__footer">
               <Link to="/" target="_blank" rel="noopener noreferrer"><FormattedMessage id="about_steemconnect" /></Link>

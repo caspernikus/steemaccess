@@ -1,13 +1,12 @@
 import * as types from '../actions/auth';
 
-export const getActiveToken = function() {
+export const getActiveToken = () => {
   const tokens = JSON.parse(localStorage.getItem('tokens'));
-  console.log(tokens);
-  console.log("tokens");
+
   if (!tokens) { return ''; }
 
   const usernames = Object.keys(tokens);
-
+  console.log(usernames);
   let activeToken = '';
   usernames.forEach((username) => {
     const tokenObj = tokens[username];
@@ -16,8 +15,26 @@ export const getActiveToken = function() {
       activeToken = tokenObj.token;
     }
   });
-  console.log(activeToken);
+
   return activeToken;
+};
+
+export const clearActiveToken = () => {
+  const tokens = JSON.parse(localStorage.getItem('tokens'));
+  const usernames = Object.keys(tokens);
+
+  usernames.forEach((username) => {
+    let tokenObj = tokens[username];
+
+    if (tokenObj.isActive) {
+      tokenObj.token = '';
+      tokenObj.isActive = false;
+    }
+
+    tokens[username] = tokenObj;
+  });
+
+  localStorage.setItem('tokens', JSON.stringify(tokens));
 };
 
 const initialState = {

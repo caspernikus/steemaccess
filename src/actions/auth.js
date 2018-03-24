@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 import { createAction } from 'redux-actions';
-import { getActiveToken } from '../reducers/auth';
+import { getActiveToken, clearActiveToken } from '../reducers/auth';
 
 export const AUTHENTICATE_REQUEST = '@auth/AUTHENTICATE_REQUEST';
 export const authenticateRequest = createAction(AUTHENTICATE_REQUEST);
@@ -19,7 +19,7 @@ export const authenticate = () =>
   (dispatch) => {
     dispatch(authenticateRequest());
     const token = getActiveToken();
-    console.log(token);
+
     if (token) {
       fetch('/api/me', {
         method: 'POST',
@@ -43,7 +43,7 @@ export const authenticate = () =>
 export const logout = (next = false) =>
   (dispatch) => {
     dispatch(logoutRequest());
-    // localStorage.removeItem('token');
+    clearActiveToken();
     dispatch(logoutSuccess());
     const to = next || '/';
     browserHistory.push(to);

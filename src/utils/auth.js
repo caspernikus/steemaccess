@@ -20,11 +20,8 @@ export const login = ({ username, wif, role = 'posting' }, cb) => {
         isActive: true,
       };
 
-      console.log(token);
-      console.log(username);
-      console.log(foundTokens);
       localStorage.setItem('tokens', JSON.stringify(foundTokens));
-      // cb(null, data);
+      cb(null, data);
     });
 };
 
