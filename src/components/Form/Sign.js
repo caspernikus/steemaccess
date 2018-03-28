@@ -33,7 +33,12 @@ class Sign extends React.Component {
     this.setState({ submitting: true });
     this.props.form.validateFields(async (err, values) => {
       if (!err) {
-        const { username, password } = values;
+        let { username, password } = values;
+
+        if (!username) {
+          username = this.props.username;
+        }
+
         const { roles, intl } = this.props;
         const accounts = await steem.api.getAccountsAsync([username]);
         const account = accounts[0];
@@ -95,10 +100,9 @@ class Sign extends React.Component {
     const { form: { getFieldDecorator }, intl } = this.props;
     const title = this.props.title ? this.props.title : <FormattedMessage id="sign_in" />;
     const btnTitle = this.props.btnTitle ? this.props.btnTitle : <FormattedMessage id="sign_in" />;
-    return (
-      <Form onSubmit={this.handleSubmit} className="SignForm">
-        <h5>{title}</h5>
-        <p><FormattedMessage id="operation_require_roles" values={{ roles: this.props.roles.join(', ') }} /></p>
+    const hasUsername = this.props.username ? true : false;
+
+    const usernameForm = (hasUsername) ? "" : (
         <Form.Item hasFeedback>
           {getFieldDecorator('username', {
             rules: [
@@ -106,9 +110,15 @@ class Sign extends React.Component {
               { validator: accountExist },
             ],
           })(
-            <Input prefix={<Icon type="user" size="large" />} placeholder={intl.formatMessage({ id: 'username' })} autoCorrect="off" autoCapitalize="none" />
+            <Input prefix={<Icon type="user" size="large" />} value={this.props.username} placeholder={intl.formatMessage({ id: 'username' })} autoCorrect="off" autoCapitalize="none" />
           )}
         </Form.Item>
+      );
+    return (
+      <Form onSubmit={this.handleSubmit} className="SignForm">
+        <h5>{title}</h5>
+        <p><FormattedMessage id="operation_require_roles" values={{ roles: this.props.roles.join(', ') }} /></p>
+        {usernameForm}
         <Form.Item hasFeedback>
           {getFieldDecorator('password', {
             rules: [

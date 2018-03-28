@@ -2,16 +2,27 @@ import steem from '@steemit/steem-js';
 import fetch from 'isomorphic-fetch';
 import { decode } from '@steemit/steem-js/lib/auth/memo';
 import { key_utils } from '@steemit/steem-js/lib/auth/ecc'; // eslint-disable-line camelcase
+import { getActiveToken } from '../reducers/auth';
 
 export const login = ({ username, wif, role = 'posting' }, cb) => {
   fetch(`/api/login/challenge?username=${username}&role=${role}`)
     .then(res => res.json())
     .then((data) => {
       const token = decode(wif, data.code).substring(1);
-      localStorage.setItem('token', token);
+      let foundTokens = JSON.parse(localStorage.getItem('tokens'));
+
+      if (!foundTokens || foundTokens === null || foundTokens.length === 0) {
+        foundTokens = {};
+      }
+
+      foundTokens[username] = {
+        token,
+        isActive: true,
+      };
+
+      localStorage.setItem('tokens', JSON.stringify(foundTokens));
       cb(null, data);
-    })
-    .catch(err => cb(err, null));
+    });
 };
 
 export const hasAuthority = (user, clientId, role = 'posting') => {
@@ -41,7 +52,7 @@ export const addPostingAuthority = ({ username, wif, clientId }, cb) => {
 };
 
 export const authorize = ({ clientId, scope, responseType = 'token' }, cb) => {
-  const token = localStorage.getItem('token');
+  const token = getActiveToken();
   fetch(`/api/oauth2/authorize?client_id=${clientId}&scope=${scope}&response_type=${responseType}`, {
     headers: new Headers({ Authorization: token }),
   })

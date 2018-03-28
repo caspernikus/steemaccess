@@ -1,8 +1,46 @@
 import * as types from '../actions/auth';
 
+export const getActiveToken = () => {
+  const tokens = JSON.parse(localStorage.getItem('tokens'));
+
+  if (!tokens) { return ''; }
+
+  const usernames = Object.keys(tokens);
+
+  let activeToken = '';
+  usernames.forEach((username) => {
+    const tokenObj = tokens[username];
+
+    if (tokenObj.isActive) {
+      activeToken = tokenObj.token;
+    }
+  });
+
+  return activeToken;
+};
+
+export const clearActiveToken = () => {
+  const tokens = JSON.parse(localStorage.getItem('tokens'));
+  const usernames = Object.keys(tokens);
+
+  usernames.forEach((username) => {
+    let tokenObj = tokens[username];
+
+    if (tokenObj.isActive) {
+      tokenObj.token = '';
+      tokenObj.isActive = false;
+    }
+
+    tokens[username] = tokenObj;
+  });
+
+  localStorage.setItem('tokens', JSON.stringify(tokens));
+};
+
 const initialState = {
   user: {},
-  token: localStorage.getItem('token'),
+  token: getActiveToken(),
+  tokens: localStorage.getItem('tokens'),
   isLoaded: false,
   isLoading: false,
   isAuthenticated: false,

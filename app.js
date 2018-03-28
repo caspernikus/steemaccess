@@ -78,6 +78,7 @@ app.use(strategy);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/api/friends', require('./routes/friends'));
 app.use('/api', require('./routes/api'));
 app.use('/api/apps', require('./routes/apps'));
 app.use('/', require('./routes/oauth2'));

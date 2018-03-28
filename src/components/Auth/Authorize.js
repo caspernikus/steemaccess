@@ -11,6 +11,7 @@ import { authorize, login, hasAuthority, addPostingAuthority } from '../../utils
 import SteemitAvatar from '../../widgets/SteemitAvatar';
 import Loading from '../../widgets/Loading';
 import SignForm from '../Form/Sign';
+import SelectAccountForm from '../Form/SelectAccount';
 import config from '../../../config.json';
 import './Authorize.less';
 
@@ -74,14 +75,18 @@ export default class Authorize extends Component {
     const { clientId, responseType, redirectUri, scope, state } = this.state;
     const { auth } = props;
     if (auth.isAuthenticated && auth.user && hasAuthority(auth.user, clientId)) {
-      authorize({ clientId, scope, responseType }, (err, res) => {
-        window.location = `${redirectUri}?${qs.stringify({ ...res, state })}`;
-      });
+      this.setState({ step: 2 });
     } else if (auth.isLoaded) {
       this.setState({ step: 1 });
     }
   };
 
+  accountSelected(account) {
+    this.setState({ 
+      step: 3,
+      username: account,
+    });
+  };
 
   authorize = (auth) => {
     const { clientId, responseType, redirectUri, scope, state } = this.state;
@@ -110,7 +115,7 @@ export default class Authorize extends Component {
         {step !== 0 && <div className="Sign__content">
           <div className="Sign_frame">
             <div className="Sign__header">
-              <object data="/img/logo.svg" type="image/svg+xml" id="logo" />
+              <object data="/img/logoblacktext.svg" type="image/svg+xml" id="logo" />
             </div>
             <div className="Sign__wrapper">
               {step === 1 &&
@@ -119,10 +124,10 @@ export default class Authorize extends Component {
                     <div className="Avatar-container">
                       <span className="Avatar" style={{ height: '40px', width: '40px' }}>
                         <object
-                          data="/img/logo-c.svg"
+                          data="/img/logoblacktext.svg"
                           type="image/svg+xml"
                           id="logo-c"
-                          style={{ height: '40px', width: '40px' }}
+                          style={{ height: '40px' }}
                         />
                       </span>
                     </div>
@@ -162,14 +167,25 @@ export default class Authorize extends Component {
                   <Form.Item>
                     <Button
                       type="primary" htmlType="button" className="SignForm__button"
-                      onClick={() => this.setState({ step: 2 })}
+                      onClick={() => {
+                          const tokens = JSON.parse(localStorage.getItem('tokens'));
+
+                          if (!tokens) { 
+                            this.setState({ step: 3 });
+                            return; 
+                          }
+
+                          this.setState({ step: 2 });
+                        }
+                      }
                     >
                       <FormattedMessage id="continue" />
                     </Button>
                   </Form.Item>
                 </Form>
               }
-              {step === 2 && <SignForm roles={requiredRoles} sign={this.authorize} />}
+              {step === 2 && <SelectAccountForm parentCallback={this.accountSelected.bind(this)} />}
+              {step === 3 && <SignForm roles={requiredRoles} username={this.state.username} sign={this.authorize} />}
             </div>
             <div className="Sign__footer">
               <Link to="/" target="_blank" rel="noopener noreferrer"><FormattedMessage id="about_steemconnect" /></Link>

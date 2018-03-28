@@ -252,7 +252,7 @@ export default class Sign extends Component {
         {step !== 'loading' && <div className="Sign__content">
           <div className="Sign_frame">
             <div className="Sign__header">
-              <object data="/img/logo.svg" type="image/svg+xml" id="logo" />
+              <object data="/img/logoblacktext.svg" type="image/svg+xml" id="logo" style={{ height: '40px' }} />
             </div>
             {step === 'signin' &&
             <div className="Sign__signin-warning"><FormattedMessage id="steemconnect_website_confirm" /></div>}
