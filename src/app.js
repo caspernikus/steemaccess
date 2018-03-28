@@ -1,5 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { PureComponent, PropTypes } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router';
 import { Icon, Layout, Menu } from 'antd';
 import Header from './widgets/Header';
@@ -17,28 +18,29 @@ export default class App extends PureComponent {
 
   render() {
     const { children, auth } = this.props;
+
     return (
       <Layout style={{ minHeight: '100%' }} >
         <Layout.Sider
           collapsed={true}
         >
-          <Menu theme="dark" mode="inline" style={{ minHeight: '100%', backgroundColor: '#001529' }}>
+          <Menu selectable={false} theme="dark" mode="inline" style={{ minHeight: '100%', backgroundColor: '#001529' }}>
             <Header username={this.props.auth.user.name} />
             <Menu.Item key="1">
               <Link to="/apps"><Icon type="appstore-o" /></Link>
-              <span> Applications </span>
+              <span> <FormattedMessage id="applications" /> </span>
             </Menu.Item>
             <Menu.Item key="2">
               <Link to="/apps/authorized"><Icon type="appstore" /></Link>
-              <span> Applications Authorized </span>
+              <span> <FormattedMessage id="authorized_apps" /> </span>
             </Menu.Item>
             <Menu.Item key="3">
               <Link to="/apps/me"><Icon type="code-o" /></Link>
-              <span> My Apps </span>
+              <span> <FormattedMessage id="my_apps" /> </span>
             </Menu.Item>
             <Menu.Item key="4">
               <Link to="/docs/oauth2"><Icon type="share-alt" /></Link>
-              <span> OAuth Links </span>
+              <span> <FormattedMessage id="oauth2" /> </span>
             </Menu.Item>
             <Menu.Item key="5">
               <Link to="/friends/me"><Icon type="team" /></Link>

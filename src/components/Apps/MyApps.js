@@ -44,7 +44,7 @@ export default class MyApps extends Component {
   render() {
     const { apps, isLoading, isLoaded } = this.state;
     return (
-      <div className="container my-5">
+      <div className="container my-4">
         <h2><FormattedMessage id="my_apps" /></h2>
         <p><FormattedMessage id="your_apps" /></p>
         {isLoading && <Loading />}

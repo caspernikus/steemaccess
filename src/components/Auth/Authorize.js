@@ -115,7 +115,7 @@ export default class Authorize extends Component {
         {step !== 0 && <div className="Sign__content">
           <div className="Sign_frame">
             <div className="Sign__header">
-              <object data="/img/logo.svg" type="image/svg+xml" id="logo" />
+              <object data="/img/logoblacktext.svg" type="image/svg+xml" id="logo" />
             </div>
             <div className="Sign__wrapper">
               {step === 1 &&
@@ -124,10 +124,10 @@ export default class Authorize extends Component {
                     <div className="Avatar-container">
                       <span className="Avatar" style={{ height: '40px', width: '40px' }}>
                         <object
-                          data="/img/logo-c.svg"
+                          data="/img/logoblacktext.svg"
                           type="image/svg+xml"
                           id="logo-c"
-                          style={{ height: '40px', width: '40px' }}
+                          style={{ height: '40px' }}
                         />
                       </span>
                     </div>

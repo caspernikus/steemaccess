@@ -50,11 +50,10 @@ class Index extends React.Component {
       <div>
         <div id="header">
           <img src="/img/macbook.png" id="macbook-img" alt="macbook" />
-          <object data="img/hero.svg" type="image/svg+xml" id="header-bg" />
           <div className="lp-container">
             <div id="menu">
               <div className="menu-item logo">
-                <object data="img/logo-white.svg" type="image/svg+xml" />
+                <object data="img/onlylogowhite.svg" type="image/svg+xml" />
               </div>
               <div className="menu-item">
                 <Popover
@@ -62,10 +61,6 @@ class Index extends React.Component {
                   content={
                     <ul className="lp-language-select">
                       <LanguageItem locale="en" setLocale={setLocale} />
-                      <LanguageItem locale="fr" setLocale={setLocale} />
-                      <LanguageItem locale="ru" setLocale={setLocale} />
-                      <LanguageItem locale="ko" setLocale={setLocale} />
-                      <LanguageItem locale="zh" setLocale={setLocale} />
                     </ul>
                   }
                   trigger="click"
@@ -77,35 +72,6 @@ class Index extends React.Component {
             <div className="hero">
               <h1 className="title"><FormattedMessage id="lp_hero_title" /></h1>
               <p className="sub-title"><FormattedMessage id="lp_hero_description" /></p>
-              <div className="newsletter">
-                <Form
-                  onSubmit={() => {}}
-                  action="//busy.us14.list-manage.com/subscribe/post?u=c8daffe293678b527521abf65&amp;id=0a6cefe541"
-                  method="post"
-                  name="mc-embedded-subscribe-form"
-                  target="_blank"
-                  className="ant-form ant-form-inline"
-                  layout="inline"
-                >
-                  <Form.Item hasFeedback>
-                    <input type="hidden" name="b_c8daffe293678b527521abf65_0a6cefe541" />
-                    {getFieldDecorator('email', {
-                      rules: [
-                        { type: 'email', message: intl.formatMessage({ id: 'error_invalid_email' }) },
-                        { required: true, message: intl.formatMessage({ id: 'error_empty_email' }) },
-                      ],
-                      className: 'hero_form_item',
-                    })(
-                      <Input name="EMAIL" placeholder={intl.formatMessage({ id: 'email_address' })} />
-                    )}
-                  </Form.Item>
-                  <Form.Item>
-                    <Button type="primary" name="subscribe" htmlType="submit" className="lp-link">
-                      <FormattedMessage id="signup" />
-                    </Button>
-                  </Form.Item>
-                </Form>
-              </div>
             </div>
           </div>
         </div>
@@ -177,7 +143,7 @@ class Index extends React.Component {
             <div>
               <h4 className="project-title"><FormattedMessage id="lp_opensource_title" /></h4>
               <p><FormattedMessage id="lp_opensource_description" /></p>
-              <a href="https://github.com/steemit/sc2" target="_blank" rel="noreferrer noopener" className="lp-link">
+              <a href="https://github.com/caspernikus/steemaccess" target="_blank" rel="noreferrer noopener" className="lp-link">
                 <FormattedMessage id="lp_opensource_button" />
               </a>
             </div>
@@ -187,22 +153,8 @@ class Index extends React.Component {
             <div>
               <h4 className="project-title"><FormattedMessage id="lp_developers_title" /></h4>
               <p><FormattedMessage id="lp_developers_description" /></p>
-              <a href="http://eepurl.com/c1PtNX" rel="noopener noreferrer" target="_blank" className="lp-link">
+              <a href="/dashboard" rel="noopener noreferrer" target="_blank" className="lp-link">
                 <FormattedMessage id="lp_developers_button" />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="get-started-container">
-          <div className="lp-container get-started">
-            <div>
-              <h2><FormattedMessage id="lp_subscribe_title" /></h2>
-              <p><FormattedMessage id="lp_subscribe_description" /></p>
-            </div>
-            <div>
-              <a href="http://eepurl.com/c1Z9VH" rel="noopener noreferrer" target="_blank" className="lp-link">
-                <FormattedMessage id="lp_subscribe_button" />
               </a>
             </div>
           </div>

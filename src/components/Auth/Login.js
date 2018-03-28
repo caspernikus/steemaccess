@@ -64,11 +64,16 @@ export default class Login extends Component {
 
     return (
       <div className="Sign">
-        <div className="Sign__content container my-2 login-form Sign__authorize">
-          {step === 1 && <SelectAccountForm parentCallback={this.accountSelected.bind(this)} />}
-          {step === 2 && <SignForm title={<FormattedMessage id="log_in" />} username={this.state.username} roles={['memo', 'posting']} sign={this.handleSubmit} />}
-          {step === 3 && <Loading />}
-        </div>
+         <div className="Sign_frame">
+            <div className="Sign__header">
+              <object data="/img/logoblacktext.svg" type="image/svg+xml" id="logo"  style={{ height: '40px' }} />
+            </div>
+            <div className="Sign__wrapper">
+              {step === 1 && <SelectAccountForm parentCallback={this.accountSelected.bind(this)} />}
+              {step === 2 && <SignForm title={<FormattedMessage id="log_in" />} username={this.state.username} roles={['memo', 'posting']} sign={this.handleSubmit} />}
+              {step === 3 && <Loading />}
+            </div>
+          </div>
       </div>
     );
   }

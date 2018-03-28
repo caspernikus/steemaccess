@@ -13,8 +13,8 @@ const OAuth2 = () => {
       </p>
       <div className="list-group">
         <div className="list-group-item">
-          <a className="mr-2" href={`${origin}/api/oauth2/authorize`}>
-            {`${origin}/api/oauth2/authorize`}
+          <a className="mr-2" href={`${origin}/oauth2/authorize`}>
+            {`${origin}/oauth2/authorize`}
           </a>
           <b><FormattedMessage id="base_auth_url" /></b>
         </div>

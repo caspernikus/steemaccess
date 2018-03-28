@@ -21,7 +21,7 @@ function makePlugins(options) {
         NODE_ENV: isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
         ENABLE_LOGGER: JSON.stringify(process.env.ENABLE_LOGGER),
         SENTRY_PUBLIC_DSN: isDevelopment ? null : JSON.stringify(process.env.SENTRY_PUBLIC_DSN),
-        STEEMJS_URL: JSON.stringify(process.env.STEEMJS_URL || 'https://api.steemit.com'),
+        STEEMJS_URL: JSON.stringify(process.env.STEEMJS_URL || 'https://rpc.buildteam.io'),
         IS_BROWSER: JSON.stringify(true),
       },
     }),

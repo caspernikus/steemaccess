@@ -6,7 +6,7 @@ export const getActiveToken = () => {
   if (!tokens) { return ''; }
 
   const usernames = Object.keys(tokens);
-  console.log(usernames);
+
   let activeToken = '';
   usernames.forEach((username) => {
     const tokenObj = tokens[username];

@@ -31,7 +31,7 @@ class SelectAccount extends React.Component {
     this.setState({ selecting: true });
     
     this.props.parentCallback(username);
-  };
+  }
 
   getAllAccounts() {
     const tokens = JSON.parse(localStorage.getItem('tokens'));
@@ -50,7 +50,7 @@ class SelectAccount extends React.Component {
     });
 
     return formData;
-  };
+  }
 
   render() {
     const { form: { getFieldDecorator }, intl } = this.props;
