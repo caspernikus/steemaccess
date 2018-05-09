@@ -6,19 +6,11 @@ import ko from 'react-intl/locale-data/ko';
 import zh from 'react-intl/locale-data/zh';
 
 import enTranslations from '../locales/en.json';
-import frTranslations from '../locales/fr.json';
-import ruTranslations from '../locales/ru.json';
-import koTranslations from '../locales/ko.json';
-import zhTranslations from '../locales/zh.json';
 
-addLocaleData([...en, ...fr, ...ru, ...zh, ...ko]);
+addLocaleData([...en]);
 
 export const translations = {
   en: enTranslations,
-  fr: frTranslations,
-  ru: ruTranslations,
-  ko: koTranslations,
-  zh: zhTranslations,
 };
 
 export const getAvailableLocale = (appLocale) => {

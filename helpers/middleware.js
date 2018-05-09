@@ -3,7 +3,7 @@ const { tokens, apps } = require('../db/models');
 
 /**
  * Check if user allow app proxy account to post on his behalf
- * And if app allow @steemconnect to post on his behalf
+ * And if app allow @steemaccess to post on his behalf
  */
 const verifyPermissions = async (req, res, next) => {
   const accounts = await req.steem.api.getAccountsAsync([req.proxy, req.user]);

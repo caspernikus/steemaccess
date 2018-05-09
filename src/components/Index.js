@@ -49,11 +49,14 @@ class Index extends React.Component {
     return (
       <div>
         <div id="header">
-          <img src="/img/macbook.png" id="macbook-img" alt="macbook" />
           <div className="lp-container">
             <div id="menu">
-              <div className="menu-item logo">
-                <object data="img/onlylogowhite.svg" type="image/svg+xml" />
+              <div className="menu-item">
+                <Button href="/dashboard">
+                  <a href="/dashboard" rel="noopener noreferrer" target="_blank">
+                    <FormattedMessage id="lp_dashboard_button" />
+                  </a>
+                </Button>
               </div>
               <div className="menu-item">
                 <Popover
@@ -69,24 +72,19 @@ class Index extends React.Component {
                 </Popover>
               </div>
             </div>
-            <div className="hero">
-              <h1 className="title"><FormattedMessage id="lp_hero_title" /></h1>
-              <p className="sub-title"><FormattedMessage id="lp_hero_description" /></p>
+            <div className="logo-big">
+              <object data="img/onlylogowhite.svg" type="image/svg+xml" />
             </div>
+            <h3 className="title"><FormattedMessage id="lp_hero_title" /></h3>
+            <h3 className="title medium-text"><FormattedMessage id="lp_hero_subtitle_1" /></h3>
+            <h3 className="title medium-text"><FormattedMessage id="lp_hero_subtitle_2" /></h3>
           </div>
-        </div>
-
-        <div className="lp-container how-it-works">
-          <span className="small-title">
-            <FormattedMessage id="lp_section_1_tag" />
-          </span>
-          <h3><FormattedMessage id="lp_section_1_title" /></h3>
         </div>
 
         <div className="steem-features-container">
           <div className="lp-container steem-features">
             <div className="steem-feature">
-              <object data="img/apps.svg" type="image/svg+xml" />
+              <object data="img/find_steem.svg" type="image/svg+xml" />
               <strong className="feature-title">
                 <FormattedMessage id="lp_feature_1_title" />
               </strong>
@@ -95,7 +93,7 @@ class Index extends React.Component {
               </p>
             </div>
             <div className="steem-feature">
-              <object data="img/account.svg" type="image/svg+xml" />
+              <object data="img/access_bc.svg" type="image/svg+xml" />
               <strong className="feature-title">
                 <FormattedMessage id="lp_feature_2_title" />
               </strong>
@@ -104,7 +102,7 @@ class Index extends React.Component {
               </p>
             </div>
             <div className="steem-feature">
-              <object data="img/wallet.svg" type="image/svg+xml" />
+              <object data="img/multi_account.svg" type="image/svg+xml" />
               <strong className="feature-title">
                 <FormattedMessage id="lp_feature_3_title" />
               </strong>
@@ -113,12 +111,32 @@ class Index extends React.Component {
               </p>
             </div>
           </div>
+          <div className="lp-container steem-features">
+            <div className="steem-feature">
+              <object data="img/friendlists.svg" type="image/svg+xml" height="150px" />
+              <strong className="feature-title">
+                <FormattedMessage id="lp_feature_4_title" />
+              </strong>
+              <p className="feature-desc">
+                <FormattedMessage id="lp_feature_4_description" />
+              </p>
+            </div>
+            <div className="steem-feature">
+              <object data="img/notifications.svg" type="image/svg+xml" />
+              <strong className="feature-title">
+                <FormattedMessage id="lp_feature_5_title" />
+              </strong>
+              <p className="feature-desc">
+                <FormattedMessage id="lp_feature_5_description" />
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="safe-secure-container">
           <div className="lp-container safe-secure">
             <div>
-              <object data="img/lock.svg" type="image/svg+xml" />
+              <object data="img/safe_secure.svg" type="image/svg+xml" height="200px" />
             </div>
             <div>
               <span className="small-title">
@@ -139,7 +157,7 @@ class Index extends React.Component {
 
         <div className="lp-container project">
           <div className="project-item">
-            <object data="img/opensource.svg" type="image/svg+xml" />
+            <object data="img/open_source.svg" type="image/svg+xml" height="80px" />
             <div>
               <h4 className="project-title"><FormattedMessage id="lp_opensource_title" /></h4>
               <p><FormattedMessage id="lp_opensource_description" /></p>
@@ -149,7 +167,7 @@ class Index extends React.Component {
             </div>
           </div>
           <div className="project-item">
-            <object data="img/code.svg" type="image/svg+xml" />
+            <object data="img/build.svg" type="image/svg+xml" height="80px" />
             <div>
               <h4 className="project-title"><FormattedMessage id="lp_developers_title" /></h4>
               <p><FormattedMessage id="lp_developers_description" /></p>
