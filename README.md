@@ -1,67 +1,21 @@
-[![CircleCI Build Status](https://circleci.com/gh/steemit/sc2.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/steemit/sc2)
-[![Crowdin](https://d322cqt584bo4o.cloudfront.net/steemconnect/localized.svg)](https://crowdin.com/project/steemconnect)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/steemit/sc2/dev/LICENSE)
-[![SteemConnect channel on Discord](https://img.shields.io/badge/chat-discord-738bd7.svg)](https://discord.gg/G95rNZs)
+# SteemAccess
 
-# SteemConnect v2
+## What is it about ?
+SteemAccess is originaly a fork from SteemConnect, the only identity layer for the steem blockchain. SteemAccess tries to provide a whole new user experience by extending this identity layer as an access layer for the steem blockchain. 
+SteemAccess will be an Access Layer + Identity Layer!
 
-## Install
+**What is an access layer?** 
+> A data access layer (DAL) in computer software, is a layer of a computer program which provides simplified access to data stored in persistent storage of some kind, such as an entity-relational database.
 
-Download and install Node.js >= 7.7.1 then run
-```
-npm install
-```
+**What does this mean for Steem?**
+It is possible to save custom jsondata on top of a user account on the steem blockchain. This ability is used to create certain functionalities (e.g friendlists), which can be easily accessed for apps via SteemAccess. Meaning only authorized applications are able to fetch (to have access) the json data with the help of SteemAccess's API!
 
-Add config vars
-```
-BROADCASTER_USERNAME = Main Steem account holding posting permissions e.g 'steemconnect'
-BROADCASTER_POSTING_WIF = Posting wif of the main account
-JWT_SECRET = Random string
-DATABASE_URL = PostgreSQL database URL
-DATABASE_NAME = production
-DEBUG = sc2:*
-```
+**What else features does SteemAccess have?**
+- Multi Account Management -> No more nasty cookie deleting to switch account. (IMPLEMENTED)
+- Quick Pay Button -> An API Point for authorized Applications / Users to embed via iFrame an easy to use 'Pay with Steem' Button
+- Dashboard & Wallet Management -> A better management of your wallet and profile with statistics
+- Activity -> See your latest activity combined with:
+- Notifications -> It will take a while to implement this, but it will allow access of authorized apps to access and present notifications for user accounts
 
-## Run
-```
-npm start
-```
 
-## Demo
-
-Test demo app here: https://steemit.github.io/sc2-angular
-
-## Api
-
-### Routes
-
-*/api/me* - Get user profile (require user or app token)
-
-*/api/broadcast* - Broadcast posting operation for user (require app token)
-
-## OAuth2
-*/api/oauth2/authorize* - Issue new app token (require user token)
-
-## Tokens
-Tokens are created with JWT, the payload is public. Here is how it look:
-
-### Token for user
-```
-{
-  role: 'user',
-  user: 'guest'
-}
-```
-The token hash is saved on user localStorage once he login.
-
-### Token for application
-```
-{
-  role: 'app',
-  proxy: 'example',
-  user: 'guest',
-  scope: ['vote', 'comment']
-}
-```
-
-The token hash is sent to the application once user authorize the application.
+SteemAccess is in early development and should not be used live ! 
